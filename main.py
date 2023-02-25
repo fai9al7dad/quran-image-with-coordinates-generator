@@ -11,7 +11,7 @@ V_PADDING = 19
 SHOW_MAREKRS = False
 IS_THICK_TEXT = True
 SHOW_BBOX = True
-PAGE_RANGES = [48, 52]
+PAGE_RANGES = [3, 10]
 # --- End of tuning variables
 
 xy = (H_PADDING*2, V_PADDING * 2)
@@ -92,23 +92,10 @@ def generate():
 
                 # if the word has a continuatuon or stop marks the treat it as a single word otherwise it will miss the rendering
                 if(len(word[2])> 1):  
-                    if(hasStartMark(word)):
-                        word = list(word)
-                        word[2] = word[2][::-1]
-                        word = tuple(word)
-                        bbox=renderTextOnImage(draw, x, y, word[2], font)
-                        x += draw.textlength(word[2], font=font)
-                        updateCoords(word[0], bbox)
-                        continue
-                    bbox = draw.textbbox((x, y), word[2][0], font=font,)
-                    bbox = (bbox[0], 0, bbox[2] , CANVAS_HEIGHT)
-                    draw.rectangle(bbox, outline="black")
-                    for char in word[2]:
-                        draw.text((x , y), char, font=font,fill="black",stroke_width=1, stroke_fill="black")
-                        # renderTextOnImage(draw, x, y, char, font)
-                    updateCoords(word[0], bbox)
-                    x += draw.textlength(word[2][0], font=font)
-                    continue
+                    word = list(word)
+                    word[2] = word[2][::-1]
+                    word = tuple(word)
+                
                 bbox = renderTextOnImage(draw, x, y, word[2], font,lineLength = lineLength)
                 updateCoords(word[0], bbox)
                 x += draw.textlength(word[2], font=font)
@@ -125,3 +112,19 @@ generate()
 # NOTES:
 # 1- coords of surah name and bismillah are not updated
 # 2- the script is not optimized and it is not the best way to do it but it works
+
+
+    # if(hasStartMark(word)):
+                    #     bbox=renderTextOnImage(draw, x, y, word[2], font)
+                    #     x += draw.textlength(word[2], font=font)
+                    #     updateCoords(word[0], bbox)
+                    #     continue
+                    # bbox = draw.textbbox((x, y), word[2][0], font=font,)
+                    # bbox = (bbox[0], 0, bbox[2] , CANVAS_HEIGHT)
+                    # draw.rectangle(bbox, outline="black")
+                    # draw.text((x , y), word[2], font=font,fill="black",stroke_width=1, stroke_fill="black")
+                    # for char in word[2]:
+                    #     # renderTextOnImage(draw, x, y, char, font)
+                    # updateCoords(word[0], bbox)
+                    # x += draw.textlength(word[2][0], font=font)
+                    # continue

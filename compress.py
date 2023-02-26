@@ -6,8 +6,8 @@ import zopfli
 def main():
     for page in range (1,605):
         # for all the images in the page folder
-        for image_file in os.listdir("output/" + str(page) + "/"):
-            fileName = "output/" + str(page) + "/" + image_file
+        for image_file in os.listdir("thin_text/" + str(page) + "/"):
+            fileName = "thin_text/" + str(page) + "/" + image_file
             with open(fileName, 'rb') as fp:
                 data = fp.read()
             png = zopfli.ZopfliPNG()

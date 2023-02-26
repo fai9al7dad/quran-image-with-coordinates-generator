@@ -56,6 +56,7 @@ IS_THICK_TEXT = False
 
 and with a white background
 ![output example 1](/images/readme/output.png "output example 1")
+
 with
 
 ```python

@@ -9,17 +9,16 @@ FONT_SIZE = 65
 H_PADDING = 0
 V_PADDING = 19
 SHOW_MAREKRS = False
-IS_THICK_TEXT = True
+IS_THICK_TEXT = False
 SHOW_BBOX = False
 PAGE_RANGES = [1, 604]
 IS_TRANSPARENT = True
-OUTPUT_FOLDER = "output/"
+OUTPUT_FOLDER = "thin_text/"
 # --- End of tuning variables
 
 xy = (H_PADDING*2, V_PADDING * 2)
 db = sqlite3.connect("database/quran-v2.db")
 cursor = db.cursor()
-lines = cursor.fetchall()
 
 def isNewChapter(word):
     return word[7] == 1
@@ -64,7 +63,7 @@ def generate():
         lineCounter = 1
       
         for line in lines:
-            image = Image.new("RGBA", (CANVAS_WIDTH, CANVAS_HEIGHT), (255, 255, 255,IS_TRANSPARENT and 0 or 255 ))
+            image = Image.new("RGBA", (CANVAS_WIDTH, CANVAS_HEIGHT), (255, 255, 255, 0 if  IS_TRANSPARENT else 255))
             draw = ImageDraw.Draw(image)
             cursor.execute("SELECT * FROM word where lineID = "+ str(line[0]) + " order by id desc")
             words = cursor.fetchall()
@@ -102,6 +101,7 @@ def generate():
                     word = tuple(word)
                 
                 bbox = renderTextOnImage(draw, x, y, word[2], font,lineLength = lineLength)
+           
                 updateCoords(word[0], bbox)
                 x += draw.textlength(word[2], font=font)
             resizedImage = image.resize((CANVAS_WIDTH , CANVAS_HEIGHT ), Image.LANCZOS)

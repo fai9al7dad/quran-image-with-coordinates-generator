@@ -51,6 +51,7 @@ with
 SHOW_BBOX = True
 SHOW_MARKERS = True
 IS_THICK_TEXT = False
+IS_TRANSPARENT = False
 ....
 ```
 
@@ -63,6 +64,7 @@ with
 SHOW_BBOX = False
 SHOW_MARKERS = False
 IS_THICK_TEXT = True
+IS_TRANSPARENT = True
 ....
 ```
 

@@ -12,6 +12,7 @@ SHOW_MAREKRS = False
 IS_THICK_TEXT = True
 SHOW_BBOX = False
 PAGE_RANGES = [1, 604]
+OUTPUT_FOLDER = "output/"
 # --- End of tuning variables
 
 xy = (H_PADDING*2, V_PADDING * 2)
@@ -43,6 +44,7 @@ def renderTextOnImage(draw, x, y, text,font,fill="black",stroke_width=1, stroke_
     return bbox
 
 def updateCoords(rowID, bbox):
+        return True
         cursor.execute("UPDATE word SET x_start = " + str(bbox[0]) + " where id = " + str(rowID))
         cursor.execute("UPDATE word SET x_end = " + str(bbox[2]) + " where id = " + str(rowID))
         cursor.execute("UPDATE word SET y_start = " + str(bbox[1]) + " where id = " + str(rowID))
@@ -53,8 +55,8 @@ def generate():
     if(PAGE_RANGES[0] > PAGE_RANGES[1]):
         raise Exception("Page range is not valid")
     for page in range (PAGE_RANGES[0], PAGE_RANGES[1] + 1):
-        if not os.path.exists("output/" + str(page)):
-            os.makedirs("output/" + str(page))
+        if not os.path.exists(OUTPUT_FOLDER + str(page)):
+            os.makedirs(OUTPUT_FOLDER + str(page))
         font = ImageFont.truetype("fonts/p" + str(page)+".ttf", FONT_SIZE,encoding="unic",layout_engine=0,)
         cursor.execute("SELECT * FROM line where pageID = " + str(page) + " order by id asc")
         lines = cursor.fetchall()
@@ -76,10 +78,10 @@ def generate():
                 if(isNewChapter(word)):
                     if(isBismillah(word) and page != 187 ): # 187 = surah tawbah
                         bismillahImage = Image.open("images/bismillah.png")
-                        bismillahImage.save("output/" + str(page) +"/" + str(lineCounter)+ ".png")
+                        bismillahImage.save(OUTPUT_FOLDER + str(page) +"/" + str(lineCounter)+ ".png")
                         break
                     surahNameImage = Image.open("images/quranLines/" +str(page) +"/"+ str(lineCounter) + ".png" )
-                    surahNameImage.save("output/" + str(page) +"/" + str(lineCounter)+ ".png")
+                    surahNameImage.save(OUTPUT_FOLDER + str(page) +"/" + str(lineCounter)+ ".png")
                     break
                 if(isMarker(word)):
                     if(SHOW_MAREKRS):
@@ -104,7 +106,7 @@ def generate():
             resizedImage = image.resize((CANVAS_WIDTH , CANVAS_HEIGHT ), Image.LANCZOS)
             # if the resized image is not empty save it
             if(resizedImage.getbbox()):
-                resizedImage.save("output/" + str(page) +"/" + str(lineCounter)+ ".png")
+                resizedImage.save(OUTPUT_FOLDER + str(page) +"/" + str(lineCounter)+ ".png")
             lineCounter += 1
         print("page " + str(page) + " done")
 

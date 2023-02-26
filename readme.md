@@ -13,7 +13,7 @@ a script that takes a QCF font and generates line by line images with each word 
 ## the database
 
 its a custom database that is scrapped from quran com api. it is a more simplified and consistent structure, also added bismillah location and surah names with its lines and fixed some bugs.
-the goal was to get line by line for every page, instead of the whole text as once.
+the goal was to get line by line for every page, instead of the whole text as once. [see source code](https://github.com/fai9al7dad/quran-starter-api/tree/Main/src/utils)
 
 ## database schema
 

@@ -1,6 +1,6 @@
 # quran image with coordinates generator
 
-a script that takes a QCF font and generates line by line images with each word coordinates and updates the database with x_start,x_end,y_start,y_end coordinates.
+a script that takes a KFGQPC (King Fahd Glorious Quran Printing Complex) font and generates line by line images with each word coordinates and updates the database with x_start,x_end,y_start,y_end coordinates.
 
 ## Prerequisites
 

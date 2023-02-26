@@ -12,6 +12,7 @@ SHOW_MAREKRS = False
 IS_THICK_TEXT = True
 SHOW_BBOX = False
 PAGE_RANGES = [1, 604]
+IS_TRANSPARENT = True
 OUTPUT_FOLDER = "output/"
 # --- End of tuning variables
 
@@ -63,7 +64,7 @@ def generate():
         lineCounter = 1
       
         for line in lines:
-            image = Image.new("RGBA", (CANVAS_WIDTH, CANVAS_HEIGHT), (255, 255, 255, 0))
+            image = Image.new("RGBA", (CANVAS_WIDTH, CANVAS_HEIGHT), (255, 255, 255,IS_TRANSPARENT and 0 or 255 ))
             draw = ImageDraw.Draw(image)
             cursor.execute("SELECT * FROM word where lineID = "+ str(line[0]) + " order by id desc")
             words = cursor.fetchall()

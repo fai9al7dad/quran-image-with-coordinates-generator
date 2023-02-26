@@ -1,19 +1,19 @@
 # quran image with coordinates generator
 
-a script that takes a QCF font and generates line by line images with each word coordinates and updates the database with x_start,x_end,y_start,y_end coordinates.
+a script that takes a KFGQPC (King Fahd Glorious Quran Printing Complex) font and generates line by line images with each word coordinates and updates the database with x_start,x_end,y_start,y_end coordinates.
 
 ## Prerequisites
 
 - python (tested on python 3.10)
 - pillow package
 - sqlite3 package
-- QCF font from [here](https://github.com/quran/quran.com-frontend-next/tree/master/public/fonts/quran/hafs/v2/ttf). should word with the old one and a new one if released
+- QCF font from [here](https://github.com/quran/quran.com-frontend-next/tree/master/public/fonts/quran/hafs/v2/ttf). should also work with the old one and a new one if released
 - a database (available on clone)
 
 ## the database
 
-its a custom database that is scrapped from quran com api. it is a more simplified and consistent structure, also added bismillah location and surah names with its lines and fixed some bugs.
-the goal was to get line by line for every page, instead of the whole text as once.
+its a custom database that is scrapped from quran com api. added some missing stuf like bismillah location and surah names with its lines and fixed some bugs.
+the goal was to get line by line for every page, instead of the whole text as once. [see source code](https://github.com/fai9al7dad/quran-starter-api/tree/Main/src/utils)
 
 ## database schema
 
@@ -51,6 +51,7 @@ with
 SHOW_BBOX = True
 SHOW_MARKERS = True
 IS_THICK_TEXT = False
+IS_TRANSPARENT = False
 ....
 ```
 
@@ -64,6 +65,7 @@ with
 SHOW_BBOX = False
 SHOW_MARKERS = False
 IS_THICK_TEXT = True
+IS_TRANSPARENT = True
 ....
 ```
 

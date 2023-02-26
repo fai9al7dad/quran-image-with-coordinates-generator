@@ -7,7 +7,7 @@ a script that takes a QCF font and generates line by line images with each word 
 - python (tested on python 3.10)
 - pillow package
 - sqlite3 package
-- QCF font from [here](https://github.com/quran/quran.com-frontend-next/tree/master/public/fonts/quran/hafs/v2/ttf). should word with the old one and a new one if released
+- QCF font from [here](https://github.com/quran/quran.com-frontend-next/tree/master/public/fonts/quran/hafs/v2/ttf). should also work with the old one and a new one if released
 - a database (available on clone)
 
 ## the database

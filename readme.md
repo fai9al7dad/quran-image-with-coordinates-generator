@@ -12,7 +12,7 @@ a script that takes a KFGQPC (King Fahd Glorious Quran Printing Complex) font an
 
 ## the database
 
-its a custom database that is scrapped from quran com api. some missing stuf like bismillah location and surah names with its lines and fixed some bugs.
+its a custom database that is scrapped from quran com api. added some missing stuf like bismillah location and surah names with its lines and fixed some bugs.
 the goal was to get line by line for every page, instead of the whole text as once. [see source code](https://github.com/fai9al7dad/quran-starter-api/tree/Main/src/utils)
 
 ## database schema

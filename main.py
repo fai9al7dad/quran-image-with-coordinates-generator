@@ -10,8 +10,8 @@ H_PADDING = 0
 V_PADDING = 19
 SHOW_MAREKRS = False
 IS_THICK_TEXT = True
-SHOW_BBOX = True
-PAGE_RANGES = [1, 604]
+SHOW_BBOX = False
+PAGE_RANGES = [19, 604]
 # --- End of tuning variables
 
 xy = (H_PADDING*2, V_PADDING * 2)

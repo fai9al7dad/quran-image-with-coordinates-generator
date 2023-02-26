@@ -77,8 +77,8 @@ and trasnparent background
 3. run main.py
 4. run compress.py (recomended)
 
-or just download the images from here and download the database from this repo and enjoy :)
+or just download the images from [here](https://drive.google.com/drive/folders/1EGmE-mihzC7pLilGA6_NCvdJQb2sXiiS?usp=share_link) and download the database from this repo and enjoy :)
 
 ## credits
 
-huge thanks to quran.com community for providing their api and fonts
+huge thanks to [quran.com](https://github.com/quran) community for providing their api and fonts

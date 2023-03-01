@@ -67,42 +67,46 @@ def generate():
             cursor.execute("SELECT * FROM word where lineID = "+ str(line[0]) + " order by id desc")
             words = cursor.fetchall()
             lineLength = 0
-            for word in words:
-                if(isNewChapter(word) or isBismillah(word)):
-                    continue
-                lineLength += draw.textlength(word[2], font=font)
-            x, y = xy
-            x += (CANVAS_WIDTH - lineLength) / 2 # to add offset to the start to center it
+            # for word in words:
+            #     if(isNewChapter(word) or isBismillah(word)):
+            #         continue
+            #     lineLength += draw.textlength(word[2], font=font)
+            # x, y = xy
+            # x += (CANVAS_WIDTH - lineLength) / 2 # to add offset to the start to center it
             for word in words:
                 if(isNewChapter(word)):
                     if(isBismillah(word) and page != 187 ): # 187 = surah tawbah
                         bismillahImage = Image.open("images/bismillah.png")
                         bismillahImage.save(OUTPUT_FOLDER + str(page) +"/" + str(lineCounter)+ ".png")
                         break
-                    surahNameImage = Image.open("images/quranLines/" +str(page) +"/"+ str(lineCounter) + ".png" )
-                    surahNameImage.save(OUTPUT_FOLDER + str(page) +"/" + str(lineCounter)+ ".png")
-                    break
-                if(isMarker(word)):
-                    if(SHOW_MAREKRS):
-                        bbox = renderTextOnImage(draw, x, y, word[2], font,fill="#887f6e",stroke_fill="#c5bdb2",stroke_width=1,isMarker=True,lineLength = lineLength)
-                        updateCoords(word[0], bbox)
+                    if(lineCounter == 15):
+                        surahNameImage = Image.open("images/quranLines/" +str(page + 1) +"/"+ str(1) + ".png" )
+                        surahNameImage.save(OUTPUT_FOLDER + str(page) +"/" + str(lineCounter)+ ".png")
                     else:
-                        bbox = draw.textbbox((x, y), word[2], font=font)
-                        bbox = (bbox[0], 0, bbox[2] , CANVAS_HEIGHT)
-                        updateCoords(word[0], bbox)
-                    x += draw.textlength(word[2], font=font)
-                    continue
+                        surahNameImage = Image.open("images/quranLines/" +str(page) +"/"+ str(lineCounter) + ".png" )
+                        surahNameImage.save(OUTPUT_FOLDER + str(page) +"/" + str(lineCounter)+ ".png")
+                    break
+                # if(isMarker(word)):
+                #     if(SHOW_MAREKRS):
+                #         bbox = renderTextOnImage(draw, x, y, word[2], font,fill="#887f6e",stroke_fill="#c5bdb2",stroke_width=1,isMarker=True,lineLength = lineLength)
+                #         updateCoords(word[0], bbox)
+                #     else:
+                #         bbox = draw.textbbox((x, y), word[2], font=font)
+                #         bbox = (bbox[0], 0, bbox[2] , CANVAS_HEIGHT)
+                #         updateCoords(word[0], bbox)
+                #     x += draw.textlength(word[2], font=font)
+                #     continue
 
-                # if the word has a continuatuon or stop marks flip it
-                if(len(word[2])> 1):  
-                    word = list(word)
-                    word[2] = word[2][::-1]
-                    word = tuple(word)
+                # # if the word has a continuatuon or stop marks flip it
+                # if(len(word[2])> 1):  
+                #     word = list(word)
+                #     word[2] = word[2][::-1]
+                #     word = tuple(word)
                 
-                bbox = renderTextOnImage(draw, x, y, word[2], font,lineLength = lineLength)
+                # bbox = renderTextOnImage(draw, x, y, word[2], font,lineLength = lineLength)
            
-                updateCoords(word[0], bbox)
-                x += draw.textlength(word[2], font=font)
+                # updateCoords(word[0], bbox)
+                # x += draw.textlength(word[2], font=font)
             resizedImage = image.resize((CANVAS_WIDTH , CANVAS_HEIGHT ), Image.LANCZOS)
             # if the resized image is not empty save it
             if(resizedImage.getbbox()):

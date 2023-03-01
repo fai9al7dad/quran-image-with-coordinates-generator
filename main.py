@@ -44,7 +44,6 @@ def renderTextOnImage(draw, x, y, text,font,fill="black",stroke_width=1, stroke_
     return bbox
 
 def updateCoords(rowID, bbox):
-        return True
         cursor.execute("UPDATE word SET x_start = " + str(bbox[0]) + " where id = " + str(rowID))
         cursor.execute("UPDATE word SET x_end = " + str(bbox[2]) + " where id = " + str(rowID))
         cursor.execute("UPDATE word SET y_start = " + str(bbox[1]) + " where id = " + str(rowID))

@@ -80,7 +80,7 @@ and trasnparent background
 3. run main.py
 4. run compress.py (recomended)
 
-or just download the images from [here](https://drive.google.com/drive/folders/1EGmE-mihzC7pLilGA6_NCvdJQb2sXiiS?usp=share_link) and download the database from this repo and enjoy :)
+or just download the images from [here](https://drive.google.com/drive/folders/1jaeXUGk9kpFDR20e7pz8F9b00A1j7PfW?usp=share_link) and download the database from this repo and enjoy :)
 
 ## credits
 
